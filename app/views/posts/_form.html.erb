@@ -1,0 +1,6 @@
+<%= simple_form_for @post do |f| %>
+  <%= f.input :title %>
+  <%= f.input :tags_string, label: 'Tags', placeholder: "please separated by comma(,) e.g. hello, world" %>
+  <%= f.input :body, as: :text, input_html: { class: "summernote_editor" } %>
+  <%= f.button :submit %>
+<% end %>

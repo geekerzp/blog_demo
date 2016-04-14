@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="pull-right">
+    <%= link_to 'Create New Post', new_post_path, class: 'btn btn-default pull-right' %>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-md-8">
+    <ul class="list-group">
+      <% @posts.each do |post| %>
+        <li class="list-group-item">
+          <%= link_to post.title, post_path(post) %>
+          <small class="pull-right"><%= post.user.username %> posted on <%= post.created_at %></small>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <div class="detailBox" style="margin: 0">
+      <div class="titleBox">
+        <label>Latest Three Comments</label>
+      </div>
+      <div class="commentBox">
+        <ul class="commentList">
+          <% cache Comment.cache_key_max_created_at do %>
+            <%= render partial: "comments/comment", collection: Comment.latest_three %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

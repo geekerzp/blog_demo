@@ -1,0 +1,4 @@
+<%= simple_form_for [resource, comment], remote: true do |f| %>
+  <%= f.input :content, placeholder: "Comments here", label: false %>
+  <%= f.button :submit, "Add", data: { behavior: "create-comment" } %>
+<% end %>

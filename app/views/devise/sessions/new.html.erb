@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="main" style="max-width: 320px;margin: 0 auto">
+    <div class="authform">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+        <h3>Sign in</h3>
+        <%= devise_error_messages! %>
+        <div class="form-group">
+          <%= f.label "username or email" %>
+          <%= f.text_field :login, :autofocus => true, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <%= f.submit 'Sign in', :class => 'button right' %>
+        <% if devise_mapping.rememberable? -%>
+          <div class="checkbox" style="width:150px">
+            <label>
+              <%= f.check_box :remember_me %> Remember me
+            </label>
+          </div>
+        <% end -%>
+      <% end %>
+    </div>
+  </div>
+</div>

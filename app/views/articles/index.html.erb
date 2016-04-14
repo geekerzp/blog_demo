@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="pull-right">
+    <%= link_to 'Create New Article', new_article_path, class: 'btn btn-default pull-right' %>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <ul class="list-group">
+      <% @articles.each do |article| %>
+        <li class="list-group-item">
+          <%= link_to article.title, article_path(article) %>
+          <small class="pull-right"><%= article.user.username %> posted on <%= article.created_at %></small>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="page-header">
+      <h2><%= @article.title %></h2>
+      <h5>Tags <%= sanitize render_tags(@article) %></h5>
+      <h3><small><%= @article.user.username %> posted on <%= @article.created_at %></small></h3>
+      <% if current_user == @article.user %>
+      <div class="btn-group" role="group">
+        <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-success" %>
+        <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </div>
+      <% end %>
+    </div>
+    <p><%= sanitize @article.body %></p>
+  </div>
+  <div class="col-md-4">
+    <div class="detailBox">
+      <div class="titleBox">
+        <label>Comments</label>
+      </div>
+      <div class="commentBox">
+        <ul class="commentList">
+          <%= render partial: "comments/comment",
+          collection: @article.comments.order("created_at DESC").includes(:user),
+          cache: true %>
+        </ul>
+      </div>
+      <div class="actionBox">
+        <% if current_user %>
+          <%= render 'comments/form', resource: @article, comment: @article.comments.build %>
+        <% else %>
+          <p>Please login to post comments.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

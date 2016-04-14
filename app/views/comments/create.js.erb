@@ -1,0 +1,10 @@
+<% if @comment.errors.blank? %>
+var $html = $("<%= j render(@comment) %>");
+$html.prependTo('.commentBox .commentList').effect('highlight', {}, 2000);
+
+var $html = $("<%= j render('form', resource: @resource, comment: @resource.comments.build) %>");
+$("form").replaceWith($html);
+<% else %>
+var $html = $("<%= j render('form', resource: @resource, comment: @comment) %>");
+$("form").replaceWith($html);
+<% end %>

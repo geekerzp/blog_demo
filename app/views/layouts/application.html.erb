@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Blog</title>
+
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+  </head>
+
+  <body class="<%= controller_name %><%= action_name %>">
+    <header>
+      <!-- Navigation -->
+      <%= render 'layouts/navigation' %>
+    </header>
+
+    <main role="main">
+      <!-- Page Content -->
+      <div class="container">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+      </div>
+    </main>
+
+  </body>
+</html>
